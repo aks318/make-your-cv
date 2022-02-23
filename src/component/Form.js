@@ -1,5 +1,5 @@
 import { Field, FieldArray, Form, Formik } from 'formik'
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
 import * as Yup from 'yup'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -8,12 +8,14 @@ import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutl
 import Button from '@mui/material/Button';
 
 const InputForm = () => {
+    const [selectedImage , setSelectedImage] = useState(null)
     const initialValues = {
         name : "",
         number : "",
         email : "",
         skills : [""],
-        certificates : [""]
+        certificates : [""],
+        about : ""
     }
 
     const validationSchema = Yup.object({
@@ -25,7 +27,9 @@ const InputForm = () => {
                 .typeError('Please Enter Valid Number')
                 .required("Number Required")
                 .min(1000000000, "Please Enter Valid Number")
-                .max(9999999999, "Please Enter Valid Number")
+                .max(9999999999, "Please Enter Valid Number"),
+        about : Yup.string().required("You have to specify something about yourself."),
+        
     })
   return (
     <Formik
@@ -127,6 +131,39 @@ const InputForm = () => {
                                     )
                                 }}
                             </FieldArray>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Field name = "about">
+                                {({field, form, meta}) => ( 
+                                    <TextField className='inputField' {...field} id="outlined-basic" label="About You"  variant="outlined" 
+                                    multiline
+                                    />
+                                )}
+                            </Field>
+                            {touched.about && errors.about && <p>{errors.about}</p>}
+                        </Grid>
+                        <Grid item xs={12} className = "img-div">
+                                {selectedImage && (
+                                <div >
+                                <img alt="not fount" width="250px" height="300px" src={URL.createObjectURL(selectedImage)} />
+                                {/* <button onClick={()=>setSelectedImage(null)}>Remove</button> */}
+                                </div>
+                                )}
+                                <input
+                                style={{ display: 'none' }}
+                                id="raised-button-file"
+                                type="file"
+                                onChange={(event) => {
+                                    console.log(event.target.files[0]);
+                                    setSelectedImage(event.target.files[0]);
+                                    setFieldValue("file" , event.target.files[0])
+                                }}
+                                />
+                                <label htmlFor="raised-button-file">
+                                    <Button variant="outlined" color='inherit' component="span" >
+                                        Upload Pic
+                                    </Button>
+                                </label> 
                         </Grid>
                     </Grid>
                 </Form>

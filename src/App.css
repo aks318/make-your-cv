@@ -32,3 +32,11 @@ p{
   margin: 0;
   color: red;
 }
+
+.img-div{
+  text-align: center;
+}
+
+.upload-btn{
+  border: 1px solid rgb(10, 10, 10);
+}
