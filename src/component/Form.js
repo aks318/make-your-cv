@@ -1,5 +1,6 @@
 import { Field, FieldArray, Form, Formik } from 'formik'
-import React , {useEffect, useState} from 'react'
+import React , {useRef, useState} from 'react'
+import { useReactToPrint } from "react-to-print";
 import * as Yup from 'yup'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -8,6 +9,11 @@ import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutl
 import Button from '@mui/material/Button';
 
 const InputForm = () => {
+    const myResume = useRef()
+    const handlePDF =  useReactToPrint({
+        content: () => myResume.current,
+      });
+    
     const [selectedImage , setSelectedImage] = useState(null)
     const initialValues = {
         name : "",
@@ -169,7 +175,11 @@ const InputForm = () => {
                 </Form>
                 <div>
                     <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleReset}>Reset</Button>
-                    <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleSubmit}>Submit</Button>
+                    {/* <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleSubmit}>Submit</Button> */}
+                    <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handlePDF}>View</Button>
+                </div>
+                <div ref = {myResume}>
+                    Your Resume
                 </div>
             </div>
         )}}
