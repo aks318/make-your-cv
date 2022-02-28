@@ -1,0 +1,28 @@
+.container{
+    width: 100vw;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.child-container{
+    border: 0px solid black;
+    margin: 10px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact{
+    display: flex;
+    align-items: center;
+}
+h2 {color: rgb(53, 47, 47);
+margin: 0;}
+p{font-size: small;}
