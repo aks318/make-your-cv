@@ -1,6 +1,5 @@
 .container{
     width: 100vw;
-    border: 1px solid black;
     margin-top: 20px;
 }
 
@@ -9,6 +8,7 @@
     margin: 10px;
     height: 150px;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -25,4 +25,8 @@
 }
 h2 {color: rgb(53, 47, 47);
 margin: 0;}
-p{font-size: small;}
+p{font-size: small}
+
+.hr{
+    border-top: 1px dotted red;
+}

@@ -20,7 +20,7 @@ const InputForm = () => {
         name : "",
         number : "",
         email : "",
-        address : "",
+        city : "",
         education : "",
         skills : [""],
         certificates : [""],
@@ -38,6 +38,7 @@ const InputForm = () => {
                 .min(1000000000, "Please Enter Valid Number")
                 .max(9999999999, "Please Enter Valid Number"),
         education : Yup.string().required("Education Required"),
+        city : Yup.string().required("City Required"),
         about : Yup.string().required("You have to specify something about yourself."),
         
     })
@@ -89,13 +90,13 @@ const InputForm = () => {
                             {touched.number && errors.number && <p>{errors.number}</p>}
                         </Grid>
                         <Grid item xs={12}>
-                            <Field name = "address">
+                            <Field name = "city">
                                 {({field, form, meta}) => ( 
-                                    <TextField className='inputField' {...field} id="outlined-basic" label="Address"  variant="outlined" 
+                                    <TextField className='inputField' {...field} id="outlined-basic" label="City"  variant="outlined" 
                                     />
                                 )}
                             </Field>
-                            {touched.about && errors.about && <p>{errors.about}</p>}
+                            {touched.city && errors.city && <p>{errors.city}</p>}
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
                             <Field name = "education">
