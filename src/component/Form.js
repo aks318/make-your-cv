@@ -17,14 +17,19 @@ const InputForm = () => {
     
     const [selectedImage , setSelectedImage] = useState(null)
     const initialValues = {
-        name : "",
-        number : "",
-        email : "",
-        city : "",
-        education : "",
-        skills : [""],
-        certificates : [""],
-        about : ""
+        name : "Aakash Vishwakarma",
+        number : "9930631284",
+        email : "akash@gmail.com",
+        city : "Mumbai",
+        education : "Bacherlore of Enginerring",
+        experience : [{
+            company : "",
+            role : "",
+            work: ""
+        }],
+        skills : ["Javascript" , "ReactJs" , "Css" , "Material UI" , "Redux" , "Axios"],
+        certificates : ["Javascript" , "ReactJs " , "Azure", "css"],
+        about : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."
     }
 
     const validationSchema = Yup.object({
@@ -58,8 +63,6 @@ const InputForm = () => {
         handleReset,
         isValid,
         dirty,}) {
-            console.log("errors" , errors)
-            console.log("touched" , touched)
             return(
             <div className='form'>
                 <Form>
@@ -97,6 +100,43 @@ const InputForm = () => {
                                 )}
                             </Field>
                             {touched.city && errors.city && <p>{errors.city}</p>}
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FieldArray name="experience">
+                                {fieldArrayProps => {
+                                    const {push , remove , form : {values : {experience}}} = fieldArrayProps
+                                    return(
+                                        <>
+                                        {experience.map((expi , index) => 
+                                            <div key={index} className = "arrayDiv">
+                                                <Field name = {`experience[${index}].company`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "50%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Company" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <Field name = {`experience[${index}].role`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "50%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Role" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <Field name = {`experience[${index}].work`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "90%"}}  {...field} id="outlined-basic" label="Work" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <div className='icon'>
+                                                    <AddCircleOutlineRoundedIcon color='action' onClick={() => push('')} />
+                                                    {index > 0 && (
+                                                    <RemoveCircleOutlineRoundedIcon color='action' onClick={() => remove(index)} />
+                                                    )}
+                                                </div>
+                                            </div>
+                                            
+                                        )}
+                                        </>
+                                    )
+                                }}
+                            </FieldArray>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
                             <Field name = "education">
@@ -197,7 +237,7 @@ const InputForm = () => {
                 </Form>
                 <div>
                     <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleReset}>Reset</Button>
-                    {/* <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleSubmit}>Submit</Button> */}
+                    <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handleSubmit}>Submit</Button>
                     <Button style={{margin : "5px" , width : "90px"}} variant="outlined" color='inherit' onClick={handlePDF}>View</Button>
                 </div>
                 <div ref = {myResume}>

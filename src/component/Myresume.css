@@ -7,9 +7,6 @@
     border: 0px solid black;
     margin: 10px;
     height: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .info{
@@ -23,10 +20,18 @@
     display: flex;
     align-items: center;
 }
-h2 {color: rgb(53, 47, 47);
+h2 , h4 {color: rgb(53, 47, 47);
 margin: 0;}
 p{font-size: small}
 
 .hr{
     border-top: 1px dotted red;
+}
+
+.skills{
+    margin-left: 20px;
+}
+
+ul{
+    margin: 0;
 }

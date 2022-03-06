@@ -13,7 +13,7 @@ const MyResume = ({values}) => {
                     <div style={{marginRight : "5px" , maxWidth : "300px"}}>
                         <p style={{color : "rgb(53, 47, 47)"}}>Email: {values.email}</p>
                         <p style={{color : "rgb(53, 47, 47)"}}>Number: {values.number}</p>
-                        <p style={{color : "rgb(53, 47, 47)"}}>City: {values.address}</p>
+                        <p style={{color : "rgb(53, 47, 47)"}}>City: {values.city}</p>
                     </div>
                     {values.file && 
                         <img alt="not fount" width="100px" height="120px" src={URL.createObjectURL(values.file)} />
@@ -26,7 +26,23 @@ const MyResume = ({values}) => {
                 marginTop: "15px"
             }}/>
             <div className='about'>
-                    <p style={{color : "rgb(53, 47, 47)"  , fontSize : "15px" , marginTop : "10px"}}>{values.about}</p>
+                    <p style={{color : "rgb(53, 47, 47)"  , fontSize : "15px" , margin : "10px 20px 10px 20px" , textAlign: "justify"}}>{values.about}</p>
+            </div> 
+            <div className='skills'>
+                <h4>Skills</h4>
+                <ul>
+                    {values.skills.map(skill => (
+                        <li>{skill}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className='skills'>
+                <h4>Certificate</h4>
+                <ul>
+                    {values.certificates.map(certificate => (
+                        <li>{certificate}</li>
+                    ))}
+                </ul>
             </div>
         </div>
     </div>
