@@ -28,7 +28,7 @@ p{font-size: small}
     border-top: 1px dotted red;
 }
 
-.skills{
+.skills, .experience{
     margin-left: 20px;
 }
 

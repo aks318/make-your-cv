@@ -1,3 +1,4 @@
+import { fontSize } from '@mui/system'
 import React from 'react'
 import './Myresume.css'
 const MyResume = ({values}) => {
@@ -28,19 +29,28 @@ const MyResume = ({values}) => {
             <div className='about'>
                     <p style={{color : "rgb(53, 47, 47)"  , fontSize : "15px" , margin : "10px 20px 10px 20px" , textAlign: "justify"}}>{values.about}</p>
             </div> 
+            <div className='experience'>
+                <h4>Experience</h4>
+                {values.experience.map((exp , index) => (
+                    <div key={index}>
+                        <h5 style={{margin : "5px 0px 5px 10px"}}>{exp.company}: <span style={{fontWeight : "450" , fontStyle : "italic"}}>{exp.role}</span> <span style={{fontWeight : "normal", fontSize : "10px"}}>({exp.year})</span></h5>
+                        <p style={{color : "rgb(53, 47, 47)" , margin : "5px 20px 10px 15px"}}>{exp.work}</p>
+                    </div>
+                ))}
+            </div>
             <div className='skills'>
                 <h4>Skills</h4>
                 <ul>
-                    {values.skills.map(skill => (
-                        <li>{skill}</li>
+                    {values.skills.map((skill , index) => (
+                        <li key={index}>{skill}</li>
                     ))}
                 </ul>
             </div>
             <div className='skills'>
                 <h4>Certificate</h4>
                 <ul>
-                    {values.certificates.map(certificate => (
-                        <li>{certificate}</li>
+                    {values.certificates.map((certificate , index) => (
+                        <li key={index}>{certificate}</li>
                     ))}
                 </ul>
             </div>

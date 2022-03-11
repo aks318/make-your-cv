@@ -23,9 +23,20 @@ const InputForm = () => {
         city : "Mumbai",
         education : "Bacherlore of Enginerring",
         experience : [{
-            company : "",
-            role : "",
-            work: ""
+            company : "TCS",
+            role : "Assistant System Engineer",
+            year : "2014-2016",
+            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        }, {
+            company : "TCS",
+            role : "Assistant System Engineer",
+            year : "2014-2016",
+            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        }, {
+            company : "TCS",
+            role : "Assistant System Engineer",
+            year : "2014-2016",
+            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
         }],
         skills : ["Javascript" , "ReactJs" , "Css" , "Material UI" , "Redux" , "Axios"],
         certificates : ["Javascript" , "ReactJs " , "Azure", "css"],
@@ -111,12 +122,17 @@ const InputForm = () => {
                                             <div key={index} className = "arrayDiv">
                                                 <Field name = {`experience[${index}].company`}>
                                                     {({field, form, meta}) => ( 
-                                                        <TextField style={{width : "50%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Company" type= "text" variant="outlined" />
+                                                        <TextField style={{width : "30%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Company" type= "text" variant="outlined" />
                                                     )}
                                                 </Field>
                                                 <Field name = {`experience[${index}].role`}>
                                                     {({field, form, meta}) => ( 
-                                                        <TextField style={{width : "50%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Role" type= "text" variant="outlined" />
+                                                        <TextField style={{width : "30%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Role" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <Field name = {`experience[${index}].year`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "30%"}}  {...field} id="outlined-basic" label="Workig year" type= "text" variant="outlined" />
                                                     )}
                                                 </Field>
                                                 <Field name = {`experience[${index}].work`}>
