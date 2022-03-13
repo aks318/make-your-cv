@@ -28,15 +28,15 @@ const InputForm = () => {
             year : "",
             work: ""
         }],
-        skills : [],
-        certificates : [],
+        skills : [""],
+        certificates : [""],
         projects : [{
             pname : "",
             year : "",
             work: ""
         }],
         about : "",
-        hobbies : []
+        hobbies : [""]
     }
 
     const validationSchema = Yup.object({
@@ -158,7 +158,7 @@ const InputForm = () => {
                                 }}
                             </FieldArray>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4}>
+                        <Grid item xs={12} sm={12} md={6}>
                             <FieldArray name="skills">
                                 {fieldArrayProps => {
                                     const {push , remove , form : {values : {skills}}} = fieldArrayProps
@@ -185,7 +185,7 @@ const InputForm = () => {
                                 }}
                             </FieldArray>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4}>
+                        <Grid item xs={12} sm={12} md={6}>
                             <FieldArray name="certificates">
                                 {fieldArrayProps => {
                                     const {push , remove , form : {values : {certificates}}} = fieldArrayProps
