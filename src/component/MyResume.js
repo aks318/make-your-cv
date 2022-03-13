@@ -1,4 +1,3 @@
-import { fontSize } from '@mui/system'
 import React from 'react'
 import './Myresume.css'
 const MyResume = ({values}) => {
@@ -33,7 +32,7 @@ const MyResume = ({values}) => {
                 <h4>Experience</h4>
                 {values.experience.map((exp , index) => (
                     <div key={index}>
-                        <h5 style={{margin : "5px 0px 5px 10px"}}>{exp.company}: <span style={{fontWeight : "450" , fontStyle : "italic"}}>{exp.role}</span> <span style={{fontWeight : "normal", fontSize : "10px"}}>({exp.year})</span></h5>
+                        <h5 style={{margin : "5px 0px 5px 10px"}}><span style={{color : "rgb(15, 190, 59)"}}>{exp.company}</span>: <span style={{fontWeight : "450" , fontStyle : "italic"}}>{exp.role}</span> <span style={{fontWeight : "normal", fontSize : "10px"}}>({exp.year})</span></h5>
                         <p style={{color : "rgb(53, 47, 47)" , margin : "5px 20px 10px 15px"}}>{exp.work}</p>
                     </div>
                 ))}
@@ -51,6 +50,23 @@ const MyResume = ({values}) => {
                 <ul>
                     {values.certificates.map((certificate , index) => (
                         <li key={index}>{certificate}</li>
+                    ))}
+                </ul>
+            </div>
+            <div className='experience'>
+                <h4>Projects</h4>
+                {values.projects.map((prj , index) => (
+                    <div key={index}>
+                        <h5 style={{margin : "5px 0px 5px 10px"}}><span style={{fontWeight : "450" , fontStyle : "italic"}}>{prj.pname}</span> <span style={{fontWeight : "normal", fontSize : "12px"}}>({prj.year})</span></h5>
+                        <p style={{color : "rgb(53, 47, 47)" , margin : "5px 20px 10px 15px"}}>{prj.work}</p>
+                    </div>
+                ))}
+            </div>
+            <div className='skills'>
+                <h4>Hobbies</h4>
+                <ul>
+                    {values.hobbies.map((skill , index) => (
+                        <li key={index}>{skill}</li>
                     ))}
                 </ul>
             </div>

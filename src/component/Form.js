@@ -17,30 +17,26 @@ const InputForm = () => {
     
     const [selectedImage , setSelectedImage] = useState(null)
     const initialValues = {
-        name : "Aakash Vishwakarma",
-        number : "9930631284",
-        email : "akash@gmail.com",
-        city : "Mumbai",
-        education : "Bacherlore of Enginerring",
+        name : "",
+        number : "",
+        email : "",
+        city : "",
+        education : "",
         experience : [{
-            company : "TCS",
-            role : "Assistant System Engineer",
-            year : "2014-2016",
-            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        }, {
-            company : "TCS",
-            role : "Assistant System Engineer",
-            year : "2014-2016",
-            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        }, {
-            company : "TCS",
-            role : "Assistant System Engineer",
-            year : "2014-2016",
-            work: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+            company : "",
+            role : "",
+            year : "",
+            work: ""
         }],
-        skills : ["Javascript" , "ReactJs" , "Css" , "Material UI" , "Redux" , "Axios"],
-        certificates : ["Javascript" , "ReactJs " , "Azure", "css"],
-        about : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."
+        skills : [],
+        certificates : [],
+        projects : [{
+            pname : "",
+            year : "",
+            work: ""
+        }],
+        about : "",
+        hobbies : []
     }
 
     const validationSchema = Yup.object({
@@ -103,7 +99,7 @@ const InputForm = () => {
                             </Field>
                             {touched.number && errors.number && <p>{errors.number}</p>}
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <Field name = "city">
                                 {({field, form, meta}) => ( 
                                     <TextField className='inputField' {...field} id="outlined-basic" label="City"  variant="outlined" 
@@ -111,6 +107,14 @@ const InputForm = () => {
                                 )}
                             </Field>
                             {touched.city && errors.city && <p>{errors.city}</p>}
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Field name = "education">
+                                {({field, form, meta}) => ( 
+                                    <TextField className='inputField' {...field} id="outlined-basic" label="Highest Education"  variant="outlined" />
+                                )}
+                            </Field>
+                            {touched.education && errors.education && <p>{errors.education}</p>}
                         </Grid>
                         <Grid item xs={12}>
                             <FieldArray name="experience">
@@ -153,14 +157,6 @@ const InputForm = () => {
                                     )
                                 }}
                             </FieldArray>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <Field name = "education">
-                                {({field, form, meta}) => ( 
-                                    <TextField className='inputField' {...field} id="outlined-basic" label="Highest Education"  variant="outlined" />
-                                )}
-                            </Field>
-                            {touched.education && errors.education && <p>{errors.education}</p>}
                         </Grid>
                         <Grid item xs={12} sm={12} md={4}>
                             <FieldArray name="skills">
@@ -217,6 +213,43 @@ const InputForm = () => {
                             </FieldArray>
                         </Grid>
                         <Grid item xs={12}>
+                            <FieldArray name="projects">
+                                {fieldArrayProps => {
+                                    const {push , remove , form : {values : {projects}}} = fieldArrayProps
+                                    return(
+                                        <>
+                                        {projects.map((expi , index) => 
+                                            <div key={index} className = "arrayDiv">
+                                                <Field name = {`projects[${index}].pname`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "30%" , marginRight : "10px"}}  {...field} id="outlined-basic" label="Project" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <Field name = {`projects[${index}].year`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "30%"}}  {...field} id="outlined-basic" label="Workig year" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <Field name = {`projects[${index}].work`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "90%"}}  {...field} id="outlined-basic" label="Work" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <div className='icon'>
+                                                    <AddCircleOutlineRoundedIcon color='action' onClick={() => push('')} />
+                                                    {index > 0 && (
+                                                    <RemoveCircleOutlineRoundedIcon color='action' onClick={() => remove(index)} />
+                                                    )}
+                                                </div>
+                                            </div>
+                                            
+                                        )}
+                                        </>
+                                    )
+                                }}
+                            </FieldArray>
+                        </Grid>
+                        <Grid item xs={12}>
                             <Field name = "about">
                                 {({field, form, meta}) => ( 
                                     <TextField className='inputField' {...field} id="outlined-basic" label="About You"  variant="outlined" 
@@ -225,6 +258,33 @@ const InputForm = () => {
                                 )}
                             </Field>
                             {touched.about && errors.about && <p>{errors.about}</p>}
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4}>
+                            <FieldArray name="hobbies">
+                                {fieldArrayProps => {
+                                    const {push , remove , form : {values : {hobbies}}} = fieldArrayProps
+                                    return(
+                                        <>
+                                        {hobbies.map((Hobby , index) => 
+                                            <div key={index} className = "arrayDiv">
+                                                <Field name = {`hobbies[${index}]`}>
+                                                    {({field, form, meta}) => ( 
+                                                        <TextField style={{width : "90%"}}  {...field} id="outlined-basic" label="Hobby" type= "text" variant="outlined" />
+                                                    )}
+                                                </Field>
+                                                <div className='icon'>
+                                                    <AddCircleOutlineRoundedIcon color='action' onClick={() => push('')} />
+                                                    {index > 0 && (
+                                                    <RemoveCircleOutlineRoundedIcon color='action' onClick={() => remove(index)} />
+                                                    )}
+                                                </div>
+                                            </div>
+                                            
+                                        )}
+                                        </>
+                                    )
+                                }}
+                            </FieldArray>
                         </Grid>
                         <Grid item xs={12} className = "img-div">
                                 {selectedImage && (
